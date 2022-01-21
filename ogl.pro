@@ -1,7 +1,10 @@
-QT       += core gui \
-            opengl
+QT       += widgets core gui opengl
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
+#LIBS += freeglut
+#LIBS += $$PWD\freeglut.lib
+#LIBS += $$PWD\freeglut.dll
 
 CONFIG += c++11
 

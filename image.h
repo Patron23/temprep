@@ -23,12 +23,21 @@ class Image
 public:
     Image();
     Image(std::string _path);
+    Image(std::string _path, std::string name);
 
     bool LoadImage(std::string _path);
+    bool LoadImage();
     QImage* GetImage();
+
+
+    std::string GetName();
+    void        SetName(std::string _name);
+    void        SetPath(std::string _path);
 
 private:
     QImage* value;
+    std::string path;
+    std::string name;
 };
 
 #endif // IMAGE_H
