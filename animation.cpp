@@ -10,7 +10,17 @@ bool NameCompare(std::string name, std::string target)
 
 Animation::Animation()
 {
+    InitVars();
+}
 
+
+
+void Animation::InitVars()
+{
+   int nextAnimationID = -1;
+   int frameSize = -1;
+   int frameStep = -1;
+   int animationType = -1;
 }
 
 // Добавить элемент в коллекцию.
@@ -53,9 +63,10 @@ bool Animation::RemoveFromCollection(std::string imgName)
     return false;
 }
 
+// TODO: удалить?
 void Animation::RemoveNextAnimation()
 {
-    nextAnimationID == -1;
+    nextAnimationID = -1;
 }
 
 void Animation::SetAnimationType(int _set)

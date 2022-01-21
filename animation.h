@@ -32,6 +32,8 @@ public:
     Animation(Image* _img);
     Animation(std::vector<Image> _collection);
 
+    void InitVars();
+
     bool AddToCollection(Image* _img);
     bool RemoveFromCollection(int id);
     bool RemoveFromCollection(std::string imgName);
