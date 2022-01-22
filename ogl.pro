@@ -1,15 +1,12 @@
-QT       += widgets core gui opengl
+QT       += core gui \
+            opengl
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
-#LIBS += freeglut
-#LIBS += $$PWD\freeglut.lib
-#LIBS += $$PWD\freeglut.dll
 
 CONFIG += c++11
 
 # $$PWD - поиск в каталоге, где .pro file
-INCLUDEPATH += $$PWD/freeglut-3.2.1
+#INCLUDEPATH += $$PWD/freeglut-3.2.1
 
 SOURCES += \
     animation.cpp \

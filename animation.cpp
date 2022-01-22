@@ -63,7 +63,6 @@ bool Animation::RemoveFromCollection(std::string imgName)
     return false;
 }
 
-// TODO: удалить?
 void Animation::RemoveNextAnimation()
 {
     nextAnimationID = -1;
@@ -107,11 +106,29 @@ void Animation::SetFrameSize(int _size)
 void Animation::SetFrame(int _set)
 {
     frame = _set;
+
+    if (frame == 0)
+        frame = 1;
 }
 
 int Animation::GetFrame()
 {
     return frame;
+}
+
+int Animation::GetAnimationType()
+{
+    return animationType;
+}
+
+Image& Animation::GetCurrentImage()
+{
+    int imgID = this->frame / this->frameSize;
+
+    if ((int)imgID > collection.size() - 1)
+        return imgErr;
+
+    return collection[imgID];
 }
 
 void Animation::SetFrameOptions(int _step, int _size, int _frame)
@@ -128,9 +145,9 @@ void Animation::FrameTick(int _tick)
 
 void Animation::FrameTick()
 {
-    frame += frameStep;
+    this->frame += this->frameStep;
 
-    if (frame > frameSize*collection.size())
+    if (this->frame > this->frameSize*this->collection.size())
     {
         SwapNext();
     }
@@ -149,9 +166,20 @@ void Animation::SwapNext()
     //this->nextAnimation = nextAnimation->nextAnimation;
 }
 
+int Animation::GetNextAnimation()
+{
+    return nextAnimationID;
+}
+
 void Animation::SetNextAnimation(int _next)
 {
     nextAnimationID = _next;
+}
+
+void Animation::SetAnimationOptions(int _type, int _next)
+{
+    SetAnimationType(_type);
+    SetNextAnimation(_next);
 }
 
 void Animation::AddToPool()

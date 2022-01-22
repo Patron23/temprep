@@ -31,3 +31,19 @@ std::string Image::GetName()
     return name;
 }
 
+bool Image::LoadImage()
+{
+    // todo: write
+    return false;
+}
+
+bool Image::LoadImage(std::string _path)
+{
+    SetPath(_path);
+    return LoadImage();
+}
+
+std::string Image::GetPath()
+{
+    return path;
+}

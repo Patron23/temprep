@@ -34,11 +34,14 @@ public:
 
     void InitVars();
 
+    Image& GetCurrentImage();
+
     bool AddToCollection(Image* _img);
     bool RemoveFromCollection(int id);
     bool RemoveFromCollection(std::string imgName);
 
     void RemoveNextAnimation();
+    int  GetNextAnimation();
     void SetNextAnimation(int _next);
 
     void SetFrame(int _set);
@@ -49,6 +52,7 @@ public:
 
     int  GetAnimationType();
     void SetAnimationType(int _set);
+    void SetAnimationOptions(int _type, int _next);
 
     std::string GetName();
     void        SetName(std::string _name);
@@ -68,7 +72,6 @@ public:
     bool LoadFromPool(int id);
     bool LoadFromPool(std::string name);
 
-
 private:
     std::vector<Image> collection;
     int nextAnimationID;
@@ -85,5 +88,6 @@ private:
 };
 
     static std::vector<Animation> AnimationPool;
+    static Image imgErr("error.jpg", "errorImage");
 
 #endif // ANIMATION_H

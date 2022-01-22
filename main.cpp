@@ -5,6 +5,8 @@
 #include <animation.h>
 #include <image.h>
 #include <gameobject.h>
+#include <algorithm>
+#include <functional>
 
 int main(int argc, char *argv[])
 {
@@ -20,29 +22,36 @@ int main(int argc, char *argv[])
     Image imgTempStay1("t", "s1");
     Image imgTempStay2("t", "s2");
     Image imgTempStay3("t", "s3");
+    Image JustImageJpg("t", "s5");
 
     an.AddToCollection(&imgTempRun1);
     an.AddToCollection(&imgTempRun2);
     an.AddToCollection(&imgTempRun3);
-    an.SetAnimationType(1);
-    an.SetNextAnimation(1);
-    an.SetFrameSize(3);
-
+    an.SetAnimationOptions(0, 1);
+    an.SetFrameOptions(1, 6, 0);
     an.AddToPool();
 
     an2.AddToCollection(&imgTempStay1);
     an2.AddToCollection(&imgTempStay2);
     an2.AddToCollection(&imgTempStay3);
-    an2.SetAnimationType(2);
-    an2.SetNextAnimation(0);
-    an2.SetFrameSize(2);
-
+    an2.SetAnimationOptions(1, 0);
+    an2.SetFrameOptions(1, 6, 0);
     an2.AddToPool();
+
+    std::vector <GameObject*> coll;
+    coll.push_back(GameObjectCreator().CreateGameObject(an, Position(1, 1)));
+    coll.push_back(GameObjectCreator().CreateGameObject(an2, Position(2, 2)));
+    coll.push_back(GameObjectCreator().CreateGameObject(JustImageJpg, Position(3, 3)));
 
     while (true)
     {
-        an.FrameTick();
+        for (unsigned int i = 0; i < coll.size(); i++)
+        {
+            coll[i]->Tick();
+            Image img = coll[i]->GetImage();
+        }
     }
+
 
     w.show();
     return a.exec();

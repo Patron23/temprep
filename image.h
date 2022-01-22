@@ -31,6 +31,7 @@ public:
 
 
     std::string GetName();
+    std::string GetPath();
     void        SetName(std::string _name);
     void        SetPath(std::string _path);
 
