@@ -66,12 +66,6 @@ public:
 
     void GetNextFromList();
 
-    void AddToPool();
-    bool RemoveFromPool(int id);
-    bool RemoveFromPool(std::string name);
-    bool LoadFromPool(int id);
-    bool LoadFromPool(std::string name);
-
 private:
     std::vector<Image> collection;
     int nextAnimationID;
@@ -87,7 +81,7 @@ private:
     void SwapNext();
 };
 
-    static std::vector<Animation> AnimationPool;
+    //static std::vector<Animation> AnimationPool;
     static Image imgErr("error.jpg", "errorImage");
 
 #endif // ANIMATION_H

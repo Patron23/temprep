@@ -35,6 +35,7 @@ private:
     Render render;
     Scene scene;
     GameObjectCreator creator;
+    GameObject* Control;
 };
 
 #endif // ENGINE_H

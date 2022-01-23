@@ -138,7 +138,7 @@ Image& Animation::GetCurrentImage()
 {
     int imgID = this->frame / this->frameSize;
 
-    if ((int)imgID > collection.size() - 1)
+    if ((short)imgID > collection.size() - 1)
         return imgErr;
 
     return collection[imgID];
@@ -168,7 +168,13 @@ void Animation::FrameTick()
 
 void Animation::SwapNext()
 {
-    LoadFromPool(nextAnimationID);
+    //LoadFromPool(nextAnimationID);
+
+    // get current frame animation
+
+    //int frameAnimation = frame / frameSize;
+
+
 
     //this->frame         = nextAnimation->frame;
     //this->frameSize     = nextAnimation->frameSize;
@@ -195,69 +201,3 @@ void Animation::SetAnimationOptions(int _type, int _next)
     SetNextAnimation(_next);
 }
 
-void Animation::AddToPool()
-{
-    AnimationPool.push_back(*this);
-}
-
-bool Animation::RemoveFromPool(int id)
-{
-    if (AnimationPool.size() < id)
-        return false;
-
-    AnimationPool.erase(AnimationPool.begin() + id);
-
-    return true;
-}
-
-bool Animation::RemoveFromPool(std::string name)
-{
-    int deleteID = -1;
-
-    for (int i = 0; i < AnimationPool.size(); i++)
-    {
-        if (name == AnimationPool[i].GetName())
-            deleteID = i;
-    }
-
-    if (deleteID != -1)
-    {
-       AnimationPool.erase(AnimationPool.begin() + deleteID);
-       return true;
-    }
-    return false;
-}
-
-bool Animation::LoadFromPool(int id)
-{
-    //Animation temp = AnimationPool.at(id);
-    //this = temp;
-    Animation _t = AnimationPool[id];
-
-    this->frame = _t.frame;
-    this->animationType = _t.animationType;
-    this->collection = _t.collection;
-    this->frameSize = _t.frameSize;
-    this->frameStep = _t.frameStep;
-    this->name = _t.name;
-    this->nextAnimationID = _t.nextAnimationID;
-
-    return true;
-}
-
-bool Animation::LoadFromPool(std::string _name)
-{
-    int _ID = -1;
-
-    for (int i = 0; i < AnimationPool.size(); i++)
-    {
-        if (_name == AnimationPool[i].GetName())
-            _ID = i;
-    }
-
-    if (_ID != -1)
-    {
-       return LoadFromPool(_ID);;
-    }
-    return false;
-}

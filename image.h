@@ -36,7 +36,7 @@ public:
     void        SetPath(std::string _path);
 
 private:
-    QImage* value;
+    QImage value;
     std::string path;
     std::string name;
 };

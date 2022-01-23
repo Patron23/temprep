@@ -15,6 +15,7 @@ public:
     void GameObjectsRemove(std::string name);
     void GameObjectRemove(Position frist, Position second);
     GameObject& GetObjectByID(int id);
+    GameObject& GetLastCreatedObject();
     void Draw();
 
 private:

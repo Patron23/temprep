@@ -85,3 +85,27 @@ void Engine::LoadObject(Position _coord, Image _img)
     GameObject* tempObj = creator.CreateGameObject(_img, _coord);
     scene.GameObjectAdd(tempObj);
 }
+
+bool Engine::LoadObject(Position _coord, presetObject _preset, bool _control)
+{
+    LoadObject(_coord, _preset);
+
+    try
+    {
+        if (_control == true)
+        {
+            Control = &scene.GetLastCreatedObject();
+        }
+    }
+    catch (...)
+    {
+        return false;
+    }
+
+    return true;
+}
+
+void Engine::ShowScreen()
+{
+
+}

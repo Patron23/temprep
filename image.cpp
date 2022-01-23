@@ -36,8 +36,10 @@ bool Image::LoadImage()
     // todo: write
     try
     {
-        value->load(QString(GetPath().c_str()), nullptr);
-    }  catch (...)
+
+        value.load(QString(GetPath().c_str()), nullptr);
+    }
+    catch (...)
     {
         return false;
     }
