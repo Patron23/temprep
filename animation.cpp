@@ -13,14 +13,27 @@ Animation::Animation()
     InitVars();
 }
 
+Animation::Animation(std::vector<Image> _collection)
+{
+    collection = _collection;
 
+    BasicFrames();
+}
 
 void Animation::InitVars()
 {
-   int nextAnimationID = -1;
-   int frameSize = -1;
-   int frameStep = -1;
-   int animationType = -1;
+   nextAnimationID = -1;
+   frameSize = -1;
+   frameStep = -1;
+   animationType = -1;
+}
+
+void Animation::BasicFrames()
+{
+    frameSize = 3;
+    frame = 1;
+    frameStep = 1;
+    animationType = 0;
 }
 
 // Добавить элемент в коллекцию.

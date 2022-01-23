@@ -83,7 +83,7 @@ private:
     int animationType;
 
 
-
+    void BasicFrames();
     void SwapNext();
 };
 

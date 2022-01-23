@@ -34,7 +34,15 @@ std::string Image::GetName()
 bool Image::LoadImage()
 {
     // todo: write
-    return false;
+    try
+    {
+        value->load(QString(GetPath().c_str()), nullptr);
+    }  catch (...)
+    {
+        return false;
+    }
+
+    return true;
 }
 
 bool Image::LoadImage(std::string _path)
