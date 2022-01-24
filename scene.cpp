@@ -5,6 +5,14 @@ Scene::Scene()
 
 }
 
+Scene::~Scene()
+{
+    for (auto obj : gameObjects)
+    {
+        delete obj;
+    }
+    gameObjects.clear();
+}
 
 void Scene::GameObjectAdd(GameObject* _obj)
 {

@@ -24,16 +24,20 @@ class Engine
 {
 public:
     Engine();
+    Engine(QString _path);
+    ~Engine();
 
     void ShowScreen();
     bool LoadObject(Position _coord, presetObject _preset);
     void LoadObject(Position _coord, Animation _anim);
     void LoadObject(Position _coord, Image _img);
+    void LoadObject(Position _coord, QString _str);
     bool LoadObject(Position _coord, presetObject _preset, bool _control);
 
 private:
-    Render render;
-    Scene scene;
+    QString path;
+    Scene* scene;
+    Render* render;
     GameObjectCreator creator;
     GameObject* Control;
 };

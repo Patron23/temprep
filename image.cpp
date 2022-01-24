@@ -1,32 +1,37 @@
 #include "image.h"
+#include <QDir>
 
-Image::Image()
+
+//Image::Image()
+//    :value("error.png")
+//{
+//}
+
+Image::Image(QString _path)
+    : value(_path)
 {
 
-}
-
-Image::Image(std::string _path)
-{
     path = _path;
 }
 
-Image::Image(std::string _path, std::string _name)
+Image::Image(QString _path, QString _name)
+    : value(_path)
 {
     SetPath(_path);
     SetName(_name);
 }
 
-void Image::SetName(std::string _name)
+void Image::SetName(QString _name)
 {
     name = _name;
 }
 
-void Image::SetPath(std::string _path)
+void Image::SetPath(QString _path)
 {
     path = _path;
 }
 
-std::string Image::GetName()
+QString Image::GetName()
 {
     return name;
 }
@@ -36,8 +41,11 @@ bool Image::LoadImage()
     // todo: write
     try
     {
-
-        value.load(QString(GetPath().c_str()), nullptr);
+        QString v = GetPath();
+        if (!value.load(v, nullptr))
+        {
+            throw;
+        }
     }
     catch (...)
     {
@@ -47,13 +55,13 @@ bool Image::LoadImage()
     return true;
 }
 
-bool Image::LoadImage(std::string _path)
+bool Image::LoadImage(QString _path)
 {
     SetPath(_path);
     return LoadImage();
 }
 
-std::string Image::GetPath()
+QString Image::GetPath()
 {
     return path;
 }

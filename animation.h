@@ -38,7 +38,7 @@ public:
 
     bool AddToCollection(Image* _img);
     bool RemoveFromCollection(int id);
-    bool RemoveFromCollection(std::string imgName);
+    bool RemoveFromCollection(QString imgName);
 
     void RemoveNextAnimation();
     int  GetNextAnimation();
@@ -54,8 +54,8 @@ public:
     void SetAnimationType(int _set);
     void SetAnimationOptions(int _type, int _next);
 
-    std::string GetName();
-    void        SetName(std::string _name);
+    QString GetName();
+    void        SetName(QString _name);
 
     int  GetFrameStep();
     void SetFrameStep(int _step);
@@ -69,19 +69,18 @@ public:
 private:
     std::vector<Image> collection;
     int nextAnimationID;
-    std::string name;
+    QString name;
 
     int frameSize;
     int frame;
     int frameStep;
     int animationType;
 
-
     void BasicFrames();
     void SwapNext();
 };
 
     //static std::vector<Animation> AnimationPool;
-    static Image imgErr("error.jpg", "errorImage");
+    //static Image imgErr("error.png");
 
 #endif // ANIMATION_H

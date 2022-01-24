@@ -1,7 +1,7 @@
 #include "animation.h"
 #include <algorithm>
 
-bool NameCompare(std::string name, std::string target)
+bool NameCompare(QString name, QString target)
 {
     if (name == target)
         return true;
@@ -58,7 +58,7 @@ bool Animation::RemoveFromCollection(int id)
     return true;
 }
 
-bool Animation::RemoveFromCollection(std::string imgName)
+bool Animation::RemoveFromCollection(QString imgName)
 {
     int deleteID = -1;
 
@@ -86,12 +86,12 @@ void Animation::SetAnimationType(int _set)
     animationType = _set;
 }
 
-std::string Animation::GetName()
+QString Animation::GetName()
 {
     return name;
 }
 
-void Animation::SetName(std::string _name)
+void Animation::SetName(QString _name)
 {
     name = _name;
 }
@@ -139,7 +139,7 @@ Image& Animation::GetCurrentImage()
     int imgID = this->frame / this->frameSize;
 
     if ((short)imgID > collection.size() - 1)
-        return imgErr;
+        throw;
 
     return collection[imgID];
 }

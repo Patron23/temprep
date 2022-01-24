@@ -9,6 +9,7 @@ class Scene
 {
 public:
     Scene();
+    ~Scene();
 
     void GameObjectAdd(GameObject* _obj);
     void GameObjectRemove(int id);

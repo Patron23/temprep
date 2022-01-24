@@ -1,6 +1,12 @@
 #include "render.h"
 
-Render::Render()
+
+Render::Render(Scene* _Scene)
+{
+    _scene = _Scene;
+}
+
+Render::~Render()
 {
 
 }

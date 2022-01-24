@@ -1,6 +1,6 @@
-#include "mwindow.h"
 #include <QApplication>
-//#include <freeglut-3.2.1\include\GL\glut.h>
+#include <qlibrary.h>
+#include <QDir>
 
 #include <animation.h>
 #include <image.h>
@@ -12,9 +12,8 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    mWindow w;
 
-    Engine engine;
+    Engine engine(QDir::currentPath() + "/debug/");
 
     engine.LoadObject(Position(0, 0), presetObject::player, true);
     engine.LoadObject(Position(1, 0), presetObject::chest_d_closed);
@@ -22,6 +21,5 @@ int main(int argc, char *argv[])
 
     engine.ShowScreen();
 
-    w.show();
     return a.exec();
 }

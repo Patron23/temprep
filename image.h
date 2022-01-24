@@ -2,6 +2,7 @@
 #define IMAGE_H
 
 #include <QImage>
+#include <QString>
 #include <string>
 /* class Image
 *
@@ -12,7 +13,7 @@
 *   2. Путь к изображению (внутри вызывается метод LoadImage)
 *   Если создание было завершено неудачей, генерируется исключение.
 *
-*   bool LoadImage(std::string _path)
+*   bool LoadImage(QString _path)
 *   Загрузить картинку.
 *
 *   QImage* GetImage()
@@ -21,24 +22,24 @@
 class Image
 {
 public:
-    Image();
-    Image(std::string _path);
-    Image(std::string _path, std::string name);
+    //Image();
+    Image(QString _path);
+    Image(QString _path, QString name);
 
-    bool LoadImage(std::string _path);
+    bool LoadImage(QString _path);
     bool LoadImage();
     QImage* GetImage();
 
 
-    std::string GetName();
-    std::string GetPath();
-    void        SetName(std::string _name);
-    void        SetPath(std::string _path);
+    QString GetName();
+    QString GetPath();
+    void        SetName(QString _name);
+    void        SetPath(QString _path);
 
 private:
     QImage value;
-    std::string path;
-    std::string name;
+    QString path;
+    QString name;
 };
 
 #endif // IMAGE_H

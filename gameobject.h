@@ -46,16 +46,18 @@ private:
     ObjectType type;
 };
 
-class GameObjectStatic : public GameObject, public Image
+class GameObjectStatic : public GameObject
 {
 public:
     GameObjectStatic(Image _img, Position _pos);
+    GameObjectStatic(QString _img, Position _post);
+    ~GameObjectStatic();
 
     void SetupAnimation(Animation _animation) override;
     void SetupImage(Image _img) override;
     void Tick() override;
     Image GetImage() override;
-    ~GameObjectStatic();
+
 
     Image* imageObject;
 };
@@ -64,6 +66,7 @@ class GameObjectAnimated : public GameObject, public Animation
 {
 public:
     GameObjectAnimated(Animation _anim, Position _pos);
+    ~GameObjectAnimated();
 
     void SetupAnimation(Animation _animation) override;
     void SetupImage(Image _img) override;
@@ -79,6 +82,7 @@ public:
 
     GameObject* CreateGameObject(Animation _anim, Position _pos);
     GameObject* CreateGameObject(Image _img, Position _pos);
+    GameObject* CreateGameObject(QString _str, Position _pos);
 };
 
 

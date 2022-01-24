@@ -49,7 +49,7 @@ GameObject::~GameObject() {}
 GameObjectStatic::GameObjectStatic(Image _img, Position _pos)
     :GameObject(ObjectType::STATIC)
 {
-    imageObject = new Image();
+    imageObject = new Image(_img.GetPath());
 
     SetX(_pos.GetX());
     SetY(_pos.GetY());
@@ -57,6 +57,18 @@ GameObjectStatic::GameObjectStatic(Image _img, Position _pos)
     imageObject->SetName(_img.GetName());
     imageObject->SetPath(_img.GetPath());
     imageObject->LoadImage();
+}
+
+GameObjectStatic::GameObjectStatic(QString _img, Position _pos)
+    :GameObject(ObjectType::STATIC)
+{
+    imageObject = new Image(_img);
+
+    imageObject->SetName(_img);
+    imageObject->SetPath(_img);
+
+    SetX(_pos.GetX());
+    SetY(_pos.GetY());
 }
 
 void GameObjectStatic::SetupAnimation(Animation _animation)
@@ -103,6 +115,11 @@ GameObjectAnimated::GameObjectAnimated(Animation _anim, Position _pos)
                 _anim.GetFrame());
 }
 
+GameObjectAnimated::~GameObjectAnimated()
+{
+    delete animationObject;
+}
+
 void GameObjectAnimated::SetupAnimation(Animation _animation)
 {
     animationObject->SetAnimationOptions(_animation.GetAnimationType(),
@@ -117,7 +134,7 @@ void GameObjectAnimated::SetupImage(Image _img)
 {
     animationObject->SetAnimationOptions(0, 0);
     animationObject->SetFrameOptions(0,0,0);
-    Image* temp = new Image();
+    Image* temp = new Image(_img.GetPath());
     temp->SetName(_img.GetName());
     temp->SetPath(_img.GetPath());
     temp->LoadImage();
@@ -143,9 +160,14 @@ GameObject* GameObjectCreator::CreateGameObject(Animation _anim, Position _pos)
     return new GameObjectAnimated(_anim, _pos);
 }
 
-GameObject* GameObjectCreator::CreateGameObject(Image _img, Position _pos)
+GameObject* GameObjectCreator::CreateGameObject(QString _str, Position _pos)
 {
-    return new GameObjectStatic(_img, _pos);
+    return new GameObjectStatic(_str, _pos);
+}
+
+GameObject* GameObjectCreator::CreateGameObject(Image _str, Position _pos)
+{
+    return new GameObjectStatic(_str, _pos);
 }
 
 //GameObject* GameObject::CreateObject(ObjectType _type, Animation _anim, int posX, int posY)
