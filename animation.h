@@ -37,7 +37,7 @@ public:
     Image& GetCurrentImage();
 
     bool AddToCollection(Image* _img);
-    bool RemoveFromCollection(int id);
+    bool RemoveFromCollection(unsigned int id);
     bool RemoveFromCollection(QString imgName);
 
     void RemoveNextAnimation();
@@ -71,10 +71,10 @@ private:
     int nextAnimationID;
     QString name;
 
-    int frameSize;
-    int frame;
-    int frameStep;
-    int animationType;
+    unsigned int frameSize;
+    unsigned int frame;
+    unsigned int frameStep;
+    unsigned int animationType;
 
     void BasicFrames();
     void SwapNext();
