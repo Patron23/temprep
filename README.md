@@ -1,4 +1,4 @@
----
+
 Нужно сделать:
 Render (ur mingw, не исправил)
 Engine.RemoveObject
