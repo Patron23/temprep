@@ -48,7 +48,7 @@ bool Animation::AddToCollection(Image *_img)
     return true;
 }
 
-bool Animation::RemoveFromCollection(int id)
+bool Animation::RemoveFromCollection(unsigned int id)
 {
     if (collection.size() < id)
         return false;
@@ -60,15 +60,19 @@ bool Animation::RemoveFromCollection(int id)
 
 bool Animation::RemoveFromCollection(QString imgName)
 {
-    int deleteID = -1;
+    unsigned int deleteID = 0;
+    bool deleteFlag = false;
 
-    for (int i = 0; i < collection.size(); i++)
+    for (unsigned int i = 0; i < collection.size(); i++)
     {
         if (imgName == collection[i].GetName())
+        {
+            deleteFlag = true;
             deleteID = i;
+        }
     }
 
-    if (deleteID != -1)
+    if (deleteFlag == true)
     {
        collection.erase(collection.begin() + deleteID);
        return true;
@@ -136,9 +140,9 @@ int Animation::GetAnimationType()
 
 Image& Animation::GetCurrentImage()
 {
-    int imgID = this->frame / this->frameSize;
+    unsigned int imgID = frame / frameSize;
 
-    if ((short)imgID > collection.size() - 1)
+    if (imgID > collection.size() - 1)
         throw;
 
     return collection[imgID];
@@ -158,9 +162,9 @@ void Animation::FrameTick(int _tick)
 
 void Animation::FrameTick()
 {
-    this->frame += this->frameStep;
+    frame += frameStep;
 
-    if (this->frame > this->frameSize*this->collection.size())
+    if (frame > frameSize*collection.size())
     {
         SwapNext();
     }
